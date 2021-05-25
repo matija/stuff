@@ -1,0 +1,13 @@
+cd /tmp
+wget https://releases.mattermost.com/5.35.1/mattermost-5.35.1-linux-amd64.tar.gz
+tar -xf mattermost*.gz --transform='s,^[^/]\+,\0-upgrade,'
+sudo systemctl stop mattermost
+cd /opt
+sudo cp -ra mattermost/ mattermost-back-$(date +'%F-%H-%M')/
+sudo find mattermost/ mattermost/client/ -mindepth 1 -maxdepth 1 \! \( -type d \( -path mattermost/client -o -path mattermost/client/plugins -o -path mattermost/config -o -path mattermost/logs -o -path mattermost/plugins -o -path mattermost/data \) -prune \) | sort | sudo xargs rm -r
+sudo chown -hR mattermost:mattermost /tmp/mattermost-upgrade/
+cd..
+sudo cp -an /tmp/mattermost-upgrade/. mattermost/
+sudo rm -r /tmp/mattermost-upgrade/
+sudo systemctl start mattermost
+
