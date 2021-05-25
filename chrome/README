@@ -1,0 +1,2 @@
+defaults write com.google.Chrome BuiltInDnsClientEnabled -boolean false
+defaults write com.google.Chrome NSRequiresAquaSystemAppearance -bool YES

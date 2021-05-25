@@ -1,0 +1,1 @@
+gem install mysql2 -v 'x.x.x' -- --with-mysql-config=/usr/local/Cellar/mysql@x.x/x.x.xx/bin/mysql_config --with-ldflags=-L/usr/local/opt/openssl/lib --with-cppflags=-I/usr/local/opt/openssl/include
