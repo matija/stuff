@@ -1,0 +1,14 @@
+# remove useless services and daemons
+open /Library/Application\ Support && open /Library/LaunchAgents && open /Library/LaunchDaemons/ && open /Library/PrivilegedHelperTools
+open /Library/LaunchAgents && open ~/Library/LaunchAgents && open /Library/LaunchDaemons
+
+
+# flush dns
+sudo killall -HUP mDNSResponder; sleep 2;
+
+# clear open with cache
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+
+# brew
+brew bundle dump
+brew bundle --force cleanup 

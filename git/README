@@ -1,0 +1,15 @@
+# remove last commit
+git reset --hard HEAD^
+git format-patch HASHSTART^sw..HASHEND --stdout > output.patch
+git am output.patch
+git reset --soft "HEAD^"
+git commit --amend
+
+# reset last commit but use changes in staged
+git reset HEAD~1 --mixed
+
+# revert multiple commits in one commit
+git log # get hashes
+git revert --no-commit FIRST_COMMIT -m 1
+git revert --no-commit SECOND_COMMIT -m 1
+git commit

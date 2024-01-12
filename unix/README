@@ -1,0 +1,2 @@
+# root logins last 30 days
+last -s -30days | grep root | grep -v tty | awk '{print $3}' | grep -v 192

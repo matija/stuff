@@ -1,2 +1,12 @@
 defaults write com.google.Chrome BuiltInDnsClientEnabled -boolean false
 defaults write com.google.Chrome NSRequiresAquaSystemAppearance -bool YES
+
+# disable autoupdate
+launchctl unload -w ~/Library/LaunchAgents/com.google.keystone.xpcservice.plist
+launchctl unload -w ~/Library/LaunchAgents/com.google.keystone.agent.plist
+echo > ~/Library/LaunchAgents/com.google.keystone.xpcservice.plist
+echo > ~/Library/LaunchAgents/com.google.keystone.agent.plist
+chmod 644 ~/Library/LaunchAgents/com.google.keystone.xpcservice.plist
+chmod 644 ~/Library/LaunchAgents/com.google.keystone.agent.plist
+sudo chown root ~/Library/LaunchAgents/com.google.keystone.xpcservice.plist
+sudo chown root ~/Library/LaunchAgents/com.google.keystone.agent.plist
